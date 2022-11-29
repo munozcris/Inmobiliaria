@@ -1,8 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Modelos.DataAccess.Context;
+using Modelos.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Register interface and class which we injected
+
+// Register interface and classes
+builder.Services.AddScoped<ICliente, ClienteImpl>();
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ApplicationDbContext>(
+       options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conexion")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
