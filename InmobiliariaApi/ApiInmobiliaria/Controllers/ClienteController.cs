@@ -52,7 +52,7 @@ namespace ApiInmobiliaria.Controllers
             }
 
         }
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> PostCliente(ClienteData cliente)
         {
             var clienteDataBase = await _cliente.PostCliente(cliente);
@@ -82,6 +82,28 @@ namespace ApiInmobiliaria.Controllers
                 return BadRequest();
             }
 
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCliente(int id, Cliente cliente)
+        {
+            var clienteDataBase = await _cliente.GetCliente(id);
+            if(clienteDataBase == null)
+            {
+                return NotFound();
+            }
+
+            clienteDataBase.NombreCliente = cliente.NombreCliente;
+            clienteDataBase.DireccionCliente = cliente.DireccionCliente;
+            clienteDataBase.CorreoCliente = cliente.CorreoCliente;
+            clienteDataBase.TelefonoCliente = cliente.TelefonoCliente;
+
+            var result = await _cliente.UpdateCliente(clienteDataBase);
+            if (!result)
+            {
+                return BadRequest();
+            }
             return Ok();
         }
     }
