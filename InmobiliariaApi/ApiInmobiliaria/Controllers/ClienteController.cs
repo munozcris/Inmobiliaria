@@ -1,10 +1,11 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Modelos.Interfaces;
+using Modelos.Models;
 
 namespace ApiInmobiliaria.Controllers
 {
-    [Route("api/[controller]/clientes")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
@@ -31,10 +32,57 @@ namespace ApiInmobiliaria.Controllers
             }
             else
             {
+                return Ok(listCliente);
+            }
+
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClienteById(int id)
+        {
+            var clienteDataBase = await _cliente.GetCliente(id);
+            if (clienteDataBase == null)
+            {
+                return NotFound(404);
+            }
+            else
+            {
+                var cli = new Cliente(clienteDataBase);
+                return Ok(cli);
+            }
+
+        }
+        [HttpPost()]
+        public async Task<IActionResult> PostCliente(ClienteData cliente)
+        {
+            var clienteDataBase = await _cliente.PostCliente(cliente);
+            if (clienteDataBase == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var cli = new Cliente(clienteDataBase);
+                return Ok(cli);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCliente(int id)
+        {
+            var clienteDataBase = await _cliente.GetCliente(id);
+            if (clienteDataBase == null)
+            {
+                return NotFound(404);
+            }
+
+            var result = await _cliente.DeleteCliente(clienteDataBase);
+            if (!result)
+            {
                 return BadRequest();
             }
 
-
+            return Ok();
         }
     }
 }

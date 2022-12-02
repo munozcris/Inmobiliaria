@@ -11,5 +11,10 @@ namespace Modelos.Models
         [StringLength(50)]
         [Required(ErrorMessage = "Este campo es requerido")]
         public string desc_condicion { get; set; }
+
+        public CondicionData()
+        {
+            Ventas = new List<VentaData>();
+        }
     }
 }

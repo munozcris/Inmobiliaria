@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register interface and classes
 builder.Services.AddScoped<ICliente, ClienteImpl>();
+builder.Services.AddScoped<ICondicion, CondicionImpl>();
 
 // Add services to the container.
 
