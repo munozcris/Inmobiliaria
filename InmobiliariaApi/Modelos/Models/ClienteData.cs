@@ -17,8 +17,6 @@ namespace Modelos.Models
         [StringLength(50)]
         public string CorreoCliente { get; set; }
 
-        [MaxLength(12)]
-        [Required(ErrorMessage = "Este campo es requerido")]
         public int TelefonoCliente { get; set; }
     }
 }

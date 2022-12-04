@@ -10,6 +10,7 @@ namespace Entities
         private string correoCliente;
         private int telefonoCliente;
 
+        public Cliente() { }
         public Cliente(ClienteData cliente)
         {
             Id = cliente.id_cliente;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Modelos.DataAccess.Context;
 
@@ -11,9 +12,10 @@ using Modelos.DataAccess.Context;
 namespace Modelos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221130183912_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,6 +48,7 @@ namespace Modelos.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("TelefonoCliente")
+                        .HasMaxLength(12)
                         .HasColumnType("int");
 
                     b.HasKey("id_cliente");
