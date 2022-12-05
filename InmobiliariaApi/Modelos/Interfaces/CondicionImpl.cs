@@ -17,5 +17,10 @@ namespace Modelos.Interfaces
         {
             return await _context.Condiciones.ToListAsync();
         }
+
+        public async Task<CondicionData> GetCondicionById(int id)
+        {
+            return await _context.Condiciones.FindAsync(id);
+        }
     }
 }

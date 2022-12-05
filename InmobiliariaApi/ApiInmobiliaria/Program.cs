@@ -9,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Register interface and classes
 builder.Services.AddScoped<ICliente, ClienteImpl>();
 builder.Services.AddScoped<ICondicion, CondicionImpl>();
+builder.Services.AddScoped<IFormaPago, FormaPagoImpl>();
+builder.Services.AddScoped<IInMueble, InmuebleImpl>();
+builder.Services.AddScoped<ITipoInmueble, TipoInmuebleImpl>();
+builder.Services.AddScoped<IVenta, VentaImpl>();
 
 // Add services to the container.
 

@@ -10,5 +10,6 @@ namespace Modelos.Interfaces
     public interface ICondicion
     {
         Task<List<CondicionData>> GetAllCondicion();
+        Task<CondicionData> GetCondicionById(int id);
     }
 }
